@@ -12,19 +12,29 @@ const message = document.querySelector('.message');
 minNumber.textContent = min;
 maxNumber.textContent = max;
 
-guessButton.addEventListener('click', function() {
+guessButton.addEventListener('click', function () {
   let guess = parseInt(guessInput.value);
 
   if (isNaN(guess) || guess < min || guess > max) {
     setMessage(`Please enter a number between ${min} and ${max}.`, 'red');
   }
 
-  if (guess = winningNumber) {
+  if (guess === winningNumber) {
     guessInput.disabled = true;
     guessInput.style.borderColor = 'green';
     setMessage(`${winningNumber} is correct! You win!`, 'green');
   } else {
+    guessesLeft -= 1;
 
+    if (guessesLeft === 0) {
+      guessInput.disabled = true;
+      guessInput.style.borderColor = 'red';
+      setMessage(`Game over, you lost. The correct number was ${winningNumber}`, 'red');
+    } else {
+      guessInput.style.borderColor = 'red';
+      guessInput.value = '';
+      setMessage(`Guess is not correct. ${guessesLeft} guesses left.`, 'red');
+    }
   }
 });
 
