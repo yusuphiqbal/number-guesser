@@ -1,6 +1,6 @@
 let min = 1;
 let max = 10;
-let winningNumber = 2;
+let winningNumber = getRandomNumber(min, max);
 let guessesLeft = 3;
 const game = document.querySelector('#game');
 const maxNumber = document.querySelector('.min-num');
@@ -43,6 +43,10 @@ guessButton.addEventListener('click', function () {
 function setMessage(msg, color) {
   message.style.color = color;
   message.textContent = msg;
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function gameOver(won, msg) {
